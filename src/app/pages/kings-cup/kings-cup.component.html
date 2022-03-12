@@ -1,0 +1,32 @@
+<div class="kings-cup-container">
+    <div class="menu-container" *ngIf="gameState.view === 'menu'">
+        <div class="title">Copão do rei</div>
+        <div class="button" (click)="startGame()">Começar o jogo</div>
+        <div class="button" (click)="gameState.view ='instruction'">Como jogar</div>
+    </div>
+
+    <div class="instruction-container" *ngIf="gameState.view === 'instruction'">
+        <div class="message">{{instruction.messages[instruction.state]}}</div>
+        <div>
+            <span class="instruction-button" (click)="instruction.state === 0 ? gameState.view = 'menu' : instruction.state = instruction.state-1"><fa-icon [icon]="icons.faChevronLeft"></fa-icon></span>
+            <span class="instruction-button" (click)="instruction.state === instruction.messages.length-1 ? gameState.view = 'menu' : instruction.state = instruction.state-1"><fa-icon [icon]="icons.faChevronRight"></fa-icon></span>
+        </div>
+    </div>
+
+    <div class="game-container" *ngIf="gameState.view === 'game'">
+        <ng-container *ngFor="let card of drawnCards">
+            <div class="card" [ngClass]="{'draw-left' : card.drawSide === false, 'draw-right' : card.drawSide === true}" [style]="'transform: translate(-50%, -50%) rotate('+card.rotate+'deg)'">
+                <div><fa-icon [icon]="card.icon"></fa-icon></div>
+                <div class="title">{{card.title}}</div>
+            </div>
+        </ng-container>
+        <div class="message" [ngClass]="{'lower' : drawnCards.length > 0}" *ngIf="drawnCards.length > 0">{{drawnCards[drawnCards.length-1].instruction}}</div>
+
+        <div class="button" [ngClass]="{'lower' : drawnCards.length > 0}" (click)="drawnCard()">Comprar uma carta</div>
+    </div>
+
+    <div class="decorative-left" *ngIf="gameState.view !== 'game'"><fa-icon [icon]="icons.faCrown"></fa-icon></div>
+    <div class="decorative-right" *ngIf="gameState.view !== 'game'"><fa-icon [icon]="icons.faChessQueen"></fa-icon></div>
+</div>
+
+<div class="back-button" (click)="(gameState.view === 'instruction' || gameState.view === 'game') ? resetGameState() : redirectTo('')"><fa-icon [icon]="icons.faArrowLeft"></fa-icon></div>

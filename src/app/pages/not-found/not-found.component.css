@@ -1,0 +1,44 @@
+.not-found-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--primary-color-1);
+    height: 100%;
+    color: var(--white);
+}
+
+.not-found-container fa-icon {
+    font-size: 10rem;
+}
+
+.not-found-container .message {
+    margin: 0px 0px 2rem 0px;
+    text-align: center;
+}
+
+.not-found-container .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    font-size: 1.2rem;
+    padding: 1.2rem;
+    margin: 0.2rem;
+    border-radius: 8px;
+    border-width: 0px 0px 0.3rem 0px;
+    border-style: solid;
+    border-color: var(--secondary-color-1-shadow);
+    background-color: var(--secondary-color-1);
+    color: var(--white);
+    cursor: pointer;
+    user-select: none;
+    transition: 0.1s linear;
+}
+
+.not-found-container .button:hover {
+    position: relative;
+    top: 4px;
+    border-width: 0px;
+    margin: 0.35rem;
+}

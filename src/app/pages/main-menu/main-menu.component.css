@@ -1,0 +1,66 @@
+.main-menu-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--primary-color-1);
+    height: 100%;
+}
+
+.main-menu-container .title {
+    margin: 15vh 0px;
+    font-size: 40px;
+    color: var(--white);
+    font-weight: 600;
+    text-align: center;
+}
+
+.main-menu-container .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    font-size: 1.2rem;
+    padding: 1.2rem;
+    margin: 0.2rem;
+    border-radius: 8px;
+    border-width: 0px 0px 0.3rem 0px;
+    border-style: solid;
+    border-color: var(--secondary-color-1-shadow);
+    background-color: var(--secondary-color-1);
+    color: var(--white);
+    cursor: pointer;
+    user-select: none;
+    transition: 0.1s linear;
+    text-align: center;
+}
+
+.main-menu-container .button:hover {
+    position: relative;
+    top: 4px;
+    border-width: 0px;
+    margin: 0.35rem;
+}
+
+.config-button {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    font-size: 20px;
+    color: var(--white);
+    cursor: pointer;
+    transition: 0.1s linear;
+}
+
+.config-button:hover {
+    color: var(--secondary-color-1);
+}
+
+.wave {
+    position: absolute;
+    bottom: -6vw;
+    left: 0px;
+}
+
+.wave path {
+    transition: 1s linear;
+}

@@ -1,0 +1,227 @@
+.kings-cup-container {
+    display: flex;
+    background-color: var(--primary-color-1);
+    height: 100%;
+    color: var(--white);
+}
+
+.kings-cup-container .menu-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.kings-cup-container .menu-container .title {
+    margin: 16vh 0px 3.5vh 0px;
+    font-size: 40px;
+    color: var(--white);
+    font-weight: 600;
+    text-align: center;
+}
+
+.kings-cup-container .menu-container .button,
+.kings-cup-container .game-container .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+    font-size: 1.2rem;
+    padding: 1.2rem;
+    margin: 0.2rem;
+    border-radius: 8px;
+    border-width: 0px 0px 0.3rem 0px;
+    border-style: solid;
+    border-color: var(--secondary-color-1-shadow);
+    background-color: var(--secondary-color-1);
+    color: var(--white);
+    cursor: pointer;
+    user-select: none;
+    transition: 0.1s linear;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.kings-cup-container .menu-container .button:hover,
+.kings-cup-container .game-container .button:hover {
+    position: relative;
+    top: 4px;
+    border-width: 0px;
+    margin: 0.35rem;
+}
+
+.kings-cup-container .game-container .message.lower {
+    transition: 1s;
+    position: absolute;
+    bottom: 20%;
+    margin: 0px 8%;
+}
+
+.kings-cup-container .game-container .button.lower {
+    transition: 1s;
+    position: absolute;
+    bottom: 5%;
+    margin: 0px 8%;
+}
+
+.kings-cup-container .game-container .button.lower:hover {
+    top: unset;
+}
+
+.game-container .card {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white);
+    border-radius: 8px;
+    width: 12rem;
+    height: 20rem;
+    color: var(--primary-color-1);
+    outline: dashed;
+    outline-color: var(--primary-color-1);
+    outline-offset: -12px;
+}
+
+.game-container .card.draw-left {
+    animation: drawCardLeft 0.4s ease-in-out;
+}
+
+.game-container .card.draw-right {
+    animation: drawCardRight 0.4s ease-in-out;
+}
+
+@keyframes drawCardLeft {
+    0% {
+        left: -50%;
+    } 100% {
+        left: 50%;
+    }
+}
+
+@keyframes drawCardRight {
+    0% {
+        left: 150%;
+    } 100% {
+        left: 50%;
+    }
+}
+
+.game-container .card fa-icon {
+    font-size: 4rem;
+}
+
+.game-container .card .title {
+    font-size: 0.9rem;
+    width: 80%;
+    text-align: center;
+}
+
+.kings-cup-container .decorative-left {
+    position: absolute;
+    left: 0;
+    bottom: -85px;
+    font-size: 15rem;
+    transform: rotate(15deg);
+    color: var(--secondary-color-1);
+    transition: 0.3s ease-in-out;
+    animation: dancingCrownLeft 3s ease-in-out infinite;
+}
+
+.kings-cup-container .decorative-right {
+    position: absolute;
+    right: 0;
+    bottom: -85px;
+    font-size: 15rem;
+    transform: rotate(-15deg);
+    color: var(--secondary-color-1);
+    transition: 0.3s ease-in-out;
+    animation: dancingCrownRight 3s ease-in-out infinite;
+}
+
+@keyframes dancingCrownLeft {
+    0% {
+        transform: rotate(-15deg);
+    } 25% {
+        transform: rotate(15deg);
+    } 75% {
+        transform: rotate(15deg);
+    } 100% {
+        transform: rotate(-15deg);
+    }
+}
+
+@keyframes dancingCrownRight {
+    0% {
+        transform: rotate(15deg);
+    } 25% {
+        transform: rotate(-15deg);
+    } 75% {
+        transform: rotate(-15deg);
+    } 100% {
+        transform: rotate(15deg);
+    }
+}
+
+.kings-cup-container .instruction-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 4%;
+    width: 100%;
+    height: 100%;
+}
+
+.kings-cup-container .instruction-container .message,
+.kings-cup-container .game-container .message {
+    text-align: center;
+    margin: 1rem 0px 1rem 0px;
+    transition: 0.3s ease-in-out;
+}
+
+.kings-cup-container .instruction-container .instruction-button {
+    margin: 0px 2rem;
+    cursor: pointer;
+}
+
+.kings-cup-container .game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 4%;
+    width: 100%;
+    height: 100%;
+}
+
+.back-button {
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--white);
+    transition: 0.1s linear;
+}
+
+.back-button:hover {
+    color: var(--secondary-color-1);
+}
+
+@media only screen and (max-width: 567px) {
+    .kings-cup-container .decorative-right {
+        display: none;
+    }
+
+    .kings-cup-container .decorative-left {
+        transform: unset;
+    }
+}

@@ -1,0 +1,269 @@
+.card-suit-race-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--primary-color-1);
+    height: 100%;
+    color: var(--white);
+    padding: 2%;
+}
+
+.card-suit-race-container .title {
+    margin: 3.5vh 0px;
+    font-size: 40px;
+    color: var(--white);
+    font-weight: 600;
+    text-align: center;
+}
+
+.card-suit-race-container .button,
+.game-container .draw-card-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    font-size: 1.2rem;
+    padding: 1.2rem;
+    margin: 0.2rem;
+    border-radius: 8px;
+    border-width: 0px 0px 0.3rem 0px;
+    border-style: solid;
+    border-color: var(--secondary-color-1-shadow);
+    background-color: var(--secondary-color-1);
+    color: var(--white);
+    cursor: pointer;
+    user-select: none;
+    transition: 0.1s linear;
+    text-align: center;
+}
+
+.card-suit-race-container .button:hover,
+.game-container .draw-card-button {
+    position: relative;
+    top: 4px;
+    border-width: 0px;
+    margin: 0.35rem;
+}
+
+.card-suit-race-container .card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0px;
+}
+
+.card-suit-race-container .card-container.no-wrap {
+    flex-wrap: nowrap;
+}
+
+.card-container .card,
+.card-container .hidden-card,
+.card-map-container .card,
+.map-line .card,
+.map-line .hidden-card,
+.card.drawn-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 5.5rem;
+    height: 2rem;
+    background-color: var(--white);
+    padding: 1.8rem 1.2rem;
+    margin: 0.5rem;
+    color: var(--black);
+    border-radius: 8px;
+    overflow: hidden;
+    backface-visibility: hidden;
+}
+
+.card.advance-card {
+    position: relative;
+    animation: advanceCardAnimation 1s ease-in-out;
+}
+
+@keyframes advanceCardAnimation {
+    0% {
+        left: 0;
+    } 100% {
+        left: 8.2rem;
+    }
+}
+
+.card.back-card {
+    position: relative;
+    animation: backCardAnimation 1s ease-in-out;
+}
+
+@keyframes backCardAnimation {
+    0% {
+        right: 0;
+    } 100% {
+        right: 8.2rem;
+    }
+}
+
+.hidden-card.turn-in-card {
+    animation: turnInCardAnimation 1s ease-in-out;
+}
+
+@keyframes turnInCardAnimation {
+    0% {
+        transform: rotateY(0deg);
+    } 100% {
+        transform: rotateY(180deg);
+    }
+}
+
+.card.turn-out-card {
+    animation: turnOutCardAnimation 1s ease-in-out;
+}
+
+@keyframes turnOutCardAnimation {
+    0% {
+        transform: rotateY(180deg);
+    } 100% {
+        transform: rotateY(360deg);
+    }
+}
+
+.card-container .hidden-card,
+.map-line .hidden-card {
+    outline: dashed;
+    outline-color: var(--primary-color-1);
+    outline-offset: -12px; 
+}
+
+.card > div:first-of-type {
+    margin-left: 0.3rem;
+}
+
+.card input {
+    border-width: 0px;
+    background-color: var(--white);
+    width: 100%;
+    text-align: center;
+}
+
+.card > div:last-of-type {
+    font-size: 0.8rem
+}
+
+.card input:focus,
+.card input:hover {
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    border-color: var(--white-3);
+    outline: none;
+}
+
+.card-suit-race-container .instruction-button {
+    margin: 0px 2rem;
+    cursor: pointer;
+}
+
+.card-suit-race-container .message {
+    text-align: center;
+    margin: 0px 0px 1rem 0px;
+}
+
+.card-suit-race-container .card-map-container {
+    display: flex;
+}
+
+.card-map-container .card-slot,
+.map-line .card-slot {
+    width: 5.5rem;
+    height: 2rem;
+    padding: 1.8rem 1.2rem;
+    margin: 0.5rem;
+}
+
+.card-map-container .card.instruction-state-one-animation {
+    position: relative;
+    animation: instructionStateOneAnimation 2s ease-in-out infinite;
+}
+
+@keyframes instructionStateOneAnimation {
+    0% {
+        left: 0;
+    } 100% {
+        left: 8.2rem;
+    }
+}
+
+.card-map-container .card.instruction-state-two-animation {
+    position: relative;
+    animation: instructionStateTwoAnimation 2s ease-in-out infinite;
+}
+
+@keyframes instructionStateTwoAnimation {
+    0% {
+        right: 0;
+    } 100% {
+        right: 8.2rem;
+    }
+}
+
+.game-container {
+    overflow: hidden;
+}
+
+.game-container .map-line {
+    display: flex;
+}
+
+.game-container .draw-card-button {
+    width: fit-content;
+    position: absolute;
+    right: 1%;
+    top: 1%;
+    padding: 0.6rem;
+}
+
+.game-container .draw-card-button:hover {
+    background-color: var(--secondary-color-1-shadow);
+}
+
+.game-container .draw-card-button.blocked {
+    background-color: var(--white-3);
+}
+
+.game-container .drawn-card {
+    position: absolute;
+    top: 10%;
+    right: 2%;
+    animation: drawCard 0.6s ease-out;
+    transform: rotate(-370deg);
+    cursor: pointer;
+}
+
+@keyframes drawCard {
+    0% {
+        right: -20%;
+        transform: rotate(-90deg);
+    } 100% {
+        right: 2%;
+        transform: rotate(-370deg);
+    }
+}
+
+.back-button {
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--white);
+    transition: 0.1s linear;
+}
+
+.back-button:hover {
+    color: var(--secondary-color-1);
+}
+
+.w100 {
+    width: 100%;
+}

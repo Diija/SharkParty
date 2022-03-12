@@ -1,0 +1,97 @@
+<div class="card-suit-race-container">
+    <ng-container *ngIf="gameState.view === 'menu'">
+        <div class="title">Corrida de naipe</div>
+        <div class="button" (click)="startGame()">Começar partida</div>
+        <div class="button" (click)="gameState.view = 'instruction'; changeInstructionState(0)">Como jogar</div>
+        <div class="card-container">
+            <div class="card" *ngFor="let card of cards">
+                <div><fa-icon [icon]="card.icon"></fa-icon></div>
+                <div><input type="text" [value]="card.team_name" (input)="card.team_name = $event.target.value"></div>
+            </div>
+        </div>
+    </ng-container>
+    
+    <ng-container *ngIf="gameState.view === 'instruction'">
+        <div class="message">{{instruction.messages[instruction.state]}}</div>
+        <div>
+            <span class="instruction-button" (click)="instruction.state === 0 ? resetToMenu() : changeInstructionState(-1)"><fa-icon [icon]="icons.faChevronLeft"></fa-icon></span>
+            <span class="instruction-button" (click)="instruction.state === instruction.messages.length-1 ? resetToMenu() : changeInstructionState(1)"><fa-icon [icon]="icons.faChevronRight"></fa-icon></span>
+        </div>
+
+        <div class="w100" *ngIf="instruction.state === 0">
+            <div class="card-container no-wrap">
+                <span class="hidden-card" *ngFor="let index of [].constructor(instruction.stateZeroCardCount)"></span>
+            </div>
+        </div>
+
+        <div class="w100" *ngIf="instruction.state === 1">
+            <div class="card-map-container">
+                <div class="card instruction-state-one-animation">
+                    <div><fa-icon [icon]="cards[0].icon"></fa-icon></div>
+                    <div><span>{{cards[0].team_name}}</span></div>
+                </div>
+                <div class="card-slot" *ngFor="let index of [].constructor(instruction.stateMaxCardCount-1)"></div>
+            </div>
+
+            <div class="card-container no-wrap">
+                <span class="hidden-card" *ngFor="let index of [].constructor(instruction.stateMaxCardCount)"></span>
+            </div>
+        </div>
+
+        <div class="w100" *ngIf="instruction.state === 2">
+            <div class="card-map-container">
+                <div class="card-slot"></div>
+                <div class="card instruction-state-two-animation">
+                    <div><fa-icon [icon]="cards[0].icon"></fa-icon></div>
+                    <div><span>{{cards[0].team_name}}</span></div>
+                </div>
+                <div class="card-slot" *ngFor="let index of [].constructor(instruction.stateMaxCardCount-2)"></div>
+            </div>
+
+            <div class="card-container no-wrap">
+                <div class="card turn-card">
+                    <div><fa-icon [icon]="cards[0].icon"></fa-icon></div>
+                    <div><span>{{cards[0].team_name}}</span></div>
+                </div>
+                <span class="hidden-card" *ngFor="let index of [].constructor(instruction.stateMaxCardCount-1)"></span>
+            </div>
+        </div>
+    </ng-container>
+
+    <div class="game-container" *ngIf="gameState.view === 'game'">
+        <div class="map-line" *ngFor="let cardLine of gameState.race_map; let index = index">
+            <ng-container *ngFor="let card of cardLine">
+                <div class="card" (click)="advanceCard(index)" [ngClass]="{'advance-card' : card.advance_animation === true, 'back-card' : card.back_animation === true}" *ngIf="card.team_name !== 'SLOT'">
+                    <div><fa-icon [icon]="card.icon"></fa-icon></div>
+                    <div><span>{{card.team_name}}</span></div>
+                </div>
+                <div class="card-slot" *ngIf="card.team_name === 'SLOT'"></div>
+            </ng-container>
+        </div>
+
+        <div class="map-line">
+            <ng-container *ngFor="let card of gameState.hidden_map">
+                <div class="hidden-card" [ngClass]="{'turn-in-card' : card.turn_in_animation}" *ngIf="card.hidden_card"></div>
+                <div class="card" [ngClass]="{'turn-out-card' : card.turn_out_animation}" *ngIf="!card.hidden_card">
+                    <div><fa-icon [icon]="card.icon"></fa-icon></div>
+                    <div><span>{{card.team_name}}</span></div>
+                </div>
+            </ng-container>
+        </div>
+
+        <div class="draw-card-button" [ngClass]="{'blocked' : blockDraw}" (click)="blockDraw ? null : drawCard()">Virar uma carta</div>
+
+        <div class="card drawn-card" (click)="gameState.draw_card = undefined" *ngIf="gameState.draw_card">
+            <div><fa-icon [icon]="gameState.draw_card.icon"></fa-icon></div>
+            <div><span>{{gameState.draw_card.team_name}}</span></div>
+        </div>
+    </div>
+
+    <ng-container *ngIf="gameState.view === 'winner' && gameState.last_winner">
+        <div class="title"><fa-icon [icon]="gameState.last_winner.icon"></fa-icon></div>
+        <div class="title">{{gameState.last_winner.team_name}} venceu a rodada!</div>
+        <div class="button" (click)="startGame()">Jogar mais um round</div>
+    </ng-container>
+</div>
+
+<div class="back-button" (click)="(gameState.view === 'instruction' || gameState.view === 'game') ? resetToMenu() : redirectTo('')"><fa-icon [icon]="icons.faArrowLeft"></fa-icon></div>

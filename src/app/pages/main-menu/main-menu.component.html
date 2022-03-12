@@ -1,0 +1,9 @@
+<div class="main-menu-container">
+    <div class="title">Shark Party Box</div>
+    <span class="button" [routerLink]="['/card-suit-race']">Corrida de naipe</span>
+    <span class="button" [routerLink]="['/kings-cup']">Copão do rei</span>
+</div>
+
+<div class="config-button"><fa-icon [icon]="icons.faGears"></fa-icon></div>
+
+<svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="var(--secondary-color-1)" fill-opacity="1" [attr.d]="wave.wavePath[wave.currentWave]"></path></svg>
